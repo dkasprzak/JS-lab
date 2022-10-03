@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.calculator{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.calculator > input, button{
+    padding: 5px;
+    margin: 10px;
+}
+
+
