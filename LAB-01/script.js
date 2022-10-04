@@ -1,15 +1,10 @@
 // Utwórz w html cztery pola tekstowe i przycisk "Przelicz"
 // Po naciśnięciu "Przelicz" pokaż na stronie sumę, średnią, min i max z wartości wpisanych do pól tekstowych.
 const btn = document.querySelector(".calculate");
-
 const field1 = parseInt(document.querySelector(".field1").value);
 const field2 = parseInt(document.querySelector(".field2").value);
 const field3 = parseInt(document.querySelector(".field3").value);
 const field4 = parseInt(document.querySelector(".field4").value);
-
-for(let a = 1; a <= 10; a++){
-  console.log(a);
-}
 
 function shame(){
   let sum = field1 + field2 + field3 + field4;
@@ -34,6 +29,4 @@ function shame(){
 //     a1.textContent = e.target.value;
 // }
 
-btn.addEventListener('click', shame);
-console.log();
 // numbers.addEventListener('change', zieww);
