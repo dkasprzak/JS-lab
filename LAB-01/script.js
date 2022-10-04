@@ -29,4 +29,5 @@ function shame(){
 //     a1.textContent = e.target.value;
 // }
 
+btn.addEventListener('click', shame);
 // numbers.addEventListener('change', zieww);
