@@ -38,16 +38,34 @@ const shame = () =>{
   
 }
 
-//Wyliczone wartości pokazuj live gdy tylko użytkownik zmieni wartość w polu tekstowym
-// function zieww(e){
-//     const sum = a + b + c + d;
-//     const avg = (a + b + c + d)/4;
-//     const minimum = Math.min(a, b, c, d)
-//     const maximum = Math.max(a, b, c, d);
+// Wyliczone wartości pokazuj live gdy tylko użytkownik zmieni wartość w polu tekstowym
 
-//     a1 = document.querySelector(".sum").innerHTML = sum;
-//     a1.textContent = e.target.value;
-// }
+const fields = document.querySelector(".calculator");
+
+const zieww = (e) =>{
+  let sum = +field1.value + +field2.value + +field3.value + +field4.value;
+  
+  let avg = sum / 4;
+  
+  let minimum = Math.min(
+    field1.value, 
+    field2.value,
+    field3.value, 
+    field4.value
+  );
+
+  let maximum = Math.max(
+    field1.value, 
+    field2.value,
+    field3.value, 
+    field4.value
+  );
+
+   sum = sumField.textContent = e.target.value;
+   avg = avgField.textContent = e.target.value;
+   minimum = minField.textContent = e.target.value;
+   maxiumum = maxField.textContent = e.target.value;
+}
 
 btn.addEventListener('click', shame);
-// numbers.addEventListener('change', zieww);
+fields.addEventListener('change', zieww);
