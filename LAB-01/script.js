@@ -42,7 +42,7 @@ const shame = () =>{
 
 const fields = document.querySelector(".calculator");
 
-const zieww = (e) =>{
+const zieww = () =>{
   let sum = +field1.value + +field2.value + +field3.value + +field4.value;
   
   let avg = sum / 4;
@@ -61,10 +61,10 @@ const zieww = (e) =>{
     field4.value
   );
 
-   sum = sumField.textContent = e.target.value;
-   avg = avgField.textContent = e.target.value;
-   minimum = minField.textContent = e.target.value;
-   maxiumum = maxField.textContent = e.target.value;
+    sumField.textContent = sum;
+    avgField.textContent = avg;
+    minField.textContent = minimum;
+    maxField.textContent = maximum;
 }
 
 btn.addEventListener('click', shame);
