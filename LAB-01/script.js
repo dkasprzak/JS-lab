@@ -67,5 +67,5 @@ const zieww = () =>{
     maxField.textContent = maximum;
 }
 
-btn.addEventListener('click', shame);
+//btn.addEventListener('click', shame);
 fields.addEventListener('change', zieww);
