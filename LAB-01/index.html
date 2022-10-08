@@ -8,22 +8,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form class="calculator">
-        <input type="text" class="field1">
-        <input type="text" class="field2">
-        <input type="text" class="field3">
-        <input type="text" class="field4">    
+    <form autocomplete="off">
+        <div class="calculator">
+            <input type="text" class="field1">
+            <input type="text" class="field2">
+            <input type="text" class="field3">
+            <input type="text" class="field4">
+        </div>
+
+        <!-- <button class="calculate">Przelicz</button> -->
     </form>
 
-    <button class="calculate">Przelicz</button>
-
     <div class="score">
-        Sum: <span class ="sum"></span><br>
-        Avg: <span class ="avg"></span><br>
-        Min: <span class ="min"></span><br>
-        Max: <span class ="max"></span><br>
-    </div>
+       <label for="sum">Sum:</label>
+       <span class ="sum"></span>
 
+       <label for="avg">Avg:        
+       </label><span class ="avg"></span>
+
+       <label for="min">Min:</label>
+       <span class ="min"></span>
+
+       <label for="max">Max:
+       </label><span class ="max"></span>
+    </div>  
+        
     <script type="application/javascript" src="script.js"></script>
 </body>
 </html>
