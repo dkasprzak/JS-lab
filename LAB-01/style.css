@@ -54,10 +54,10 @@ input:focus{
 }
 
 label{
+    display: block;
     margin-bottom : 10px;
 }
 
 span{
-    display: block;
     margin: 8px;
 }
