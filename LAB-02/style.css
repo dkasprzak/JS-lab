@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#slider{
+    width: 600px;
+    height: 400px;
+    margin: 100px auto 0 auto;
+    overflow: hidden;
+}
+
+#slider .slides{
+    display: flex;
+    animation-name: turn-left;
+    animation-duration: 10s;
+    animation-delay: 3s;
+    animation-timing-function: ease-in-out;
+}
+
+#next{
+    display: flex;
+    width: 200px;
+    height: 30px;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#next .dot{
+    display: flex;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(121, 119, 119);
+    margin-left: 10px;
+    border-radius: 50%;
+
+}
+
+#next .dot:hover{
+    background-color: rgb(49, 49, 49);
+}
+
+@keyframes turn-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translate(-2000px);
+    }
+}
