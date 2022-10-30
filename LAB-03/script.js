@@ -1,8 +1,15 @@
-document.addEventListener('keypress', playSound);
+document.addEventListener('keypress', onKeyPress);
 
 const KeyToSound = {
-    'a': document.querySelector('#s1'),
-    'b': document.querySelector('#s2')
+    'a': document.querySelector('#clap'),
+    's': document.querySelector('#boom'),
+    'd': document.querySelector('#hihat'),
+    'f': document.querySelector('#kick'),
+    'g': document.querySelector('#openhat'),
+    'h': document.querySelector('#ride'),
+    'j': document.querySelector('#snare'),
+    'k': document.querySelector('#tink'),
+    'l': document.querySelector('#tom')
 }
 
 function onKeyPress(event){
