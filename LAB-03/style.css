@@ -55,13 +55,15 @@ audio{
     margin: 20px;
 }
 
-.play__button, .record__button{
+#play1, #play2, #play3, #play4,
+#record1, #record2, #record3, #record4{
     width: 24px;
     height: 24px;
     margin: 5px;
 }
 
-.play__button:hover, .record__button:hover{
+#play1:hover, #play2:hover, #play3:hover, #play4:hover,
+#record1:hover, #record2:hover, #record3:hover, #record4:hover{
     width: 28px;
     height: 28px;
     margin: 3px;
