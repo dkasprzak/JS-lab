@@ -21,6 +21,7 @@ const KeyToSound = {
     'L': document.querySelector('#tom')
 }
 
+
 function onKeyPress(event){
     const sound = KeyToSound[event.key];
     playSound(sound);
