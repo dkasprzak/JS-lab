@@ -1,0 +1,20 @@
+.notes{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: cadetblue;
+}    
+
+.addedNote{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 300px;
+    height: 150px;
+}
+
+.addedNote button{
+    width: 100px;
+    justify-content: space-between;
+}
