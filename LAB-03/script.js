@@ -21,6 +21,39 @@ const KeyToSound = {
     'L': document.querySelector('#tom')
 }
 
+Chanels = [
+    {
+        chanel: document.querySelector(".chanel1")
+    },
+    {
+        chanel: document.querySelector(".chanel2")
+    },
+    {
+        chanel: document.querySelector(".chanel3")
+    },
+    {
+        chanel: document.querySelector(".chanel4")
+    }
+]
+
+const recordBtns = document.getElementsByClassName('record');
+for(recordBtn of recordBtn){
+    recordBtn.addEventListener('click', recordSong);
+}
+
+const stopBtns = document.getElementsByClassName('stop');
+for(stopBtn of stopBtns){
+    stopBtn.addEventListener('click', stopSong);
+}
+
+const playBtns = document.getElementsByClassName('play');
+for(playBtn of playBtns){
+    playBtns.addEventListener('click', playSong)
+}
+
+function record(sound){
+    const chanel = Chanels.find(c => c.chanel)
+}
 
 function onKeyPress(event){
     const sound = KeyToSound[event.key];
@@ -31,3 +64,4 @@ function playSound(sound){
     sound.currentTime = 0;
     sound.play();
 }
+
