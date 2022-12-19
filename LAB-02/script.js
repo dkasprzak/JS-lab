@@ -63,13 +63,14 @@ const activeDot = () => {
 let intervalId;
 
 const startSlideShow = () => {
-   intervalId = setInterval(nextPhoto, 2000);
+   clearInterval(intervalId);
+   intervalId = setInterval(nextPhoto, 3000);
 }
 
 const stopSlideShow = () => {
    clearInterval(intervalId);
+   setTimeout(startSlideShow, 10000)
 }
-
 
 
 nextBtn.addEventListener('click',  () => {
