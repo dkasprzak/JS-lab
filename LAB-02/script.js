@@ -1,9 +1,13 @@
+//tablica zdjęć
 const photos = ['./photos/photo1.jpg', './photos/photo2.jpg', './photos/photo3.jpg', './photos/photo4.jpg'];
 const slider = document.querySelector('.slider');
+const buttons = document.querySelector('.buttons');
 const slides = document.querySelector('.slides');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
+const pauseBtn = document.querySelector('.pause');
 
+//tworzy zdjęcia na stronie z tablicy
 photos.forEach(image => {
    const img = document.createElement('img');
    img.src = image;
@@ -13,9 +17,10 @@ photos.forEach(image => {
    slides.appendChild(img);
 });
 
+//tworzy kropki
 const dots = document.createElement('div');
 dots.className = "dots";
-slider.appendChild(dots);
+buttons.appendChild(dots);
 
 for(let i = 0; i < photos.length; i++){
    const dot = document.createElement('button');
@@ -84,6 +89,10 @@ prevBtn.addEventListener('click', () => {
    activeDot();
    stopSlideShow();
  });
+
+pauseBtn.addEventListener('click', () => {
+   stopSlideShow();
+});
 
  allDots.forEach((dot, index) => {
    dot.addEventListener('click', () => {

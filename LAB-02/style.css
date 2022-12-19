@@ -21,6 +21,16 @@ body{
   align-items: center;
 }
 
+.buttons{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.pause{
+  margin: 32px 10px;
+}
+
 .slider{
   width: 600px;
   height: 400px;
@@ -54,6 +64,8 @@ body{
 .dot.active {
   background-color: rgb(68, 37, 207);
 }
+
+
 
 button{
   background-color: rgb(68, 37, 207);
