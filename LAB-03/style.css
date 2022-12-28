@@ -17,7 +17,7 @@ body{
 }
 
 audio{
-   visibility: hidden;
+  /* visibility: hidden; */
    width: 0px;
    height: 0px;
 }
@@ -55,13 +55,14 @@ audio{
     margin: 20px;
 }
 
-.play,
-.stop,
-.record{
+.playIcon,
+.stopIcon,
+.recordIcon{
     width: 24px;
     height: 24px;
     margin: 5px;
 }
+
 
 .play:hover,
 .stop:hover, 

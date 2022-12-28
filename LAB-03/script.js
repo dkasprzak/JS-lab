@@ -1,3 +1,19 @@
+const playBtn = document.querySelector(".play1");
+const stopBtn = document.querySelector(".stop1");
+const recordBtn = document.querySelector(".record1");
+
+const playBtn2 = document.querySelector(".play1");
+const stopBtn2 = document.querySelector(".stop1");
+const recordBtn2 = document.querySelector(".record1");
+
+const playBtn3 = document.querySelector(".play1");
+const stopBtn3 = document.querySelector(".stop1");
+const recordBtn3 = document.querySelector(".record1");
+
+const playBtn4 = document.querySelector(".play1");
+const stopBtn4 = document.querySelector(".stop1");
+const recordBtn4 = document.querySelector(".record1");
+
 document.addEventListener('keypress', onKeyPress);
 
 const KeyToSound = {
@@ -21,47 +37,48 @@ const KeyToSound = {
     'L': document.querySelector('#tom')
 }
 
-Chanels = [
-    {
-        chanel: document.querySelector(".chanel1")
-    },
-    {
-        chanel: document.querySelector(".chanel2")
-    },
-    {
-        chanel: document.querySelector(".chanel3")
-    },
-    {
-        chanel: document.querySelector(".chanel4")
+let recordedCh1 =[];
+let recordedCh2 =[];
+let recordedCh3 =[];
+let recordedCh4 =[];
+
+
+recordBtn.addEventListener('click', () => {
+    if(playBtn){
+        recordedCh1 = [];
     }
-]
-
-const recordBtns = document.getElementsByClassName('record');
-for(recordBtn of recordBtn){
-    recordBtn.addEventListener('click', recordSong);
-}
-
-const stopBtns = document.getElementsByClassName('stop');
-for(stopBtn of stopBtns){
-    stopBtn.addEventListener('click', stopSong);
-}
-
-const playBtns = document.getElementsByClassName('play');
-for(playBtn of playBtns){
-    playBtns.addEventListener('click', playSong)
-}
-
-function record(sound){
-    const chanel = Chanels.find(c => c.chanel)
-}
+    if(playBtn2){
+        recordedCh2 = [];
+    }
+    if(playBtn3){
+        recordedCh3 = [];
+    }
+    if(playBtn4){
+        recordedCh4 = [];
+    }
+    document.addEventListener('keypress', onKeyPress);
+});
 
 function onKeyPress(event){
     const sound = KeyToSound[event.key];
     playSound(sound);
+    recorded.push(sound);
 }
 
 function playSound(sound){
-    sound.currentTime = 0;
-    sound.play();
+    const audio = new Audio(sound.src);
+    audio.currentTime = 0;
+    audio.play();
 }
 
+stopBtn.addEventListener('click', () => {
+    document.removeEventListener('keypress', onKeyPress);
+});
+
+playBtn.addEventListener('click', () => {
+    for (let i = 0; i < recorded.length; i++) {
+    setTimeout(() => {
+        playSound(recorded[i]);
+        }, i * 500); // opóźnienie w milisekundach
+    }
+    });
