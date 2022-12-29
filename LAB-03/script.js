@@ -24,6 +24,7 @@ class Channel {
       this.playBtn = playBtn;
       this.stopBtn = stopBtn;
       this.recordBtn = recordBtn;
+      this.audio = new Audio();
       this.recorded = [];
       this.isRecording = false;
 
@@ -34,9 +35,9 @@ class Channel {
     };
        
      this.playSound = (sound) =>{
-        const audio = new Audio(sound.src);
-        audio.currentTime = 0;
-        audio.play();
+        this.audio.src = sound.src;
+        this.audio.currentTime = 0;
+        this.audio.play();
     }  
        
   
@@ -59,7 +60,7 @@ class Channel {
         for (let i = 0; i < this.recorded.length; i++) {
           setTimeout(() => {
             this.playSound(this.recorded[i]);
-          }, i * 500); // opóźnienie w milisekundach
+          }, i * 2000); // opóźnienie w milisekundach
         }
       });
     }  
