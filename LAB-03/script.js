@@ -1,21 +1,3 @@
-const playBtn = document.querySelector(".play1");
-const stopBtn = document.querySelector(".stop1");
-const recordBtn = document.querySelector(".record1");
-
-const playBtn2 = document.querySelector(".play1");
-const stopBtn2 = document.querySelector(".stop1");
-const recordBtn2 = document.querySelector(".record1");
-
-const playBtn3 = document.querySelector(".play1");
-const stopBtn3 = document.querySelector(".stop1");
-const recordBtn3 = document.querySelector(".record1");
-
-const playBtn4 = document.querySelector(".play1");
-const stopBtn4 = document.querySelector(".stop1");
-const recordBtn4 = document.querySelector(".record1");
-
-document.addEventListener('keypress', onKeyPress);
-
 const KeyToSound = {
     'a': document.querySelector('#clap'),
     'A': document.querySelector('#clap'),
@@ -37,48 +19,72 @@ const KeyToSound = {
     'L': document.querySelector('#tom')
 }
 
-let recordedCh1 =[];
-let recordedCh2 =[];
-let recordedCh3 =[];
-let recordedCh4 =[];
+class Channel {
+    constructor(playBtn, stopBtn, recordBtn) {
+      this.playBtn = playBtn;
+      this.stopBtn = stopBtn;
+      this.recordBtn = recordBtn;
+      this.recorded = [];
+      this.isRecording = false;
 
-
-recordBtn.addEventListener('click', () => {
-    if(playBtn){
-        recordedCh1 = [];
-    }
-    if(playBtn2){
-        recordedCh2 = [];
-    }
-    if(playBtn3){
-        recordedCh3 = [];
-    }
-    if(playBtn4){
-        recordedCh4 = [];
-    }
-    document.addEventListener('keypress', onKeyPress);
-});
-
-function onKeyPress(event){
-    const sound = KeyToSound[event.key];
-    playSound(sound);
-    recorded.push(sound);
+     this.onKeyPress = (event) => {
+        const sound = KeyToSound[event.key];
+        this.playSound(sound);
+        this.recorded.push(sound);
+    };
+       
+     this.playSound = (sound) =>{
+        const audio = new Audio(sound.src);
+        audio.currentTime = 0;
+        audio.play();
+    }  
+       
+  
+     this.recordBtn.addEventListener('click', () => {
+        if (!this.isRecording) {
+            this.recorded = [];
+            this.isRecording = true;
+            document.addEventListener('keypress', this.onKeyPress.bind(this));
+        } else {
+            this.isRecording = false;
+            document.removeEventListener('keypress', this.onKeyPress.bind(this));
+        }
+        });
+  
+      this.stopBtn.addEventListener('click', () => {
+        document.removeEventListener('keypress', this.onKeyPress.bind(this));
+      });
+  
+      this.playBtn.addEventListener('click', () => {
+        for (let i = 0; i < this.recorded.length; i++) {
+          setTimeout(() => {
+            this.playSound(this.recorded[i]);
+          }, i * 500); // opóźnienie w milisekundach
+        }
+      });
+    }  
 }
 
-function playSound(sound){
-    const audio = new Audio(sound.src);
-    audio.currentTime = 0;
-    audio.play();
-}
+const chanel1 = new Channel(
+    document.querySelector(".play1"),
+    document.querySelector(".stop1"),
+    document.querySelector(".record1")
+);
 
-stopBtn.addEventListener('click', () => {
-    document.removeEventListener('keypress', onKeyPress);
-});
+const chanel2 = new Channel(
+    document.querySelector(".play2"),
+    document.querySelector(".stop2"),
+    document.querySelector(".record2")
+);
 
-playBtn.addEventListener('click', () => {
-    for (let i = 0; i < recorded.length; i++) {
-    setTimeout(() => {
-        playSound(recorded[i]);
-        }, i * 500); // opóźnienie w milisekundach
-    }
-    });
+const chanel3 = new Channel(
+    document.querySelector(".play3"),
+    document.querySelector(".stop3"),
+    document.querySelector(".record3")
+);
+
+const chanel4 = new Channel(
+    document.querySelector(".play4"),
+    document.querySelector(".stop4"),
+    document.querySelector(".record4")
+);
