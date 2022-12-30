@@ -1,17 +1,47 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: beige;
+    font-family: Helvetica, sans-serif;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    margin: 32px;
+}
+
+#add-form{
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea, select{
+    margin-bottom: 16px;
+}
+
+label{
+    display: inline-block;
+}
+
 .notes{
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    background-color: cadetblue;
 }    
 
-.addedNote{
+.note{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
     width: 300px;
-    height: 150px;
+    min-height: 100px;
+    margin: 10px;
 }
 
 .addedNote button{
