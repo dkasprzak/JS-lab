@@ -9,11 +9,10 @@ async function measureAndLogPerformance(){
 measureAndLogPerformance();
 
 async function addData1(data) {
-    let sum = 0
-    for (let item of data) {
-      sum = await asyncAdd(sum, item)
-    }
-    return sum
+   return data.reduce(async (sumPromise, item) => {
+    const sum = await sumPromise;
+    return asyncAdd(sum, item);
+   }, 0);
 }
 
 async function addData2(data){
