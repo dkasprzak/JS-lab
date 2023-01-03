@@ -1,14 +1,19 @@
-const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const data = Array.from({length: 100}, (_, i) => i + 1);
 
-await measurePerformance('add 1', () => addData1(data), data);
-await measurePerformance('add 2', () => addData2(data), data);
-await measurePerformance('add 3', () => addData3(data), data);
+async function measureAndLogPerformance(){
+    await measurePerformance('add 1', () => addData1(data), data);
+    await measurePerformance('add 2', () => addData2(data), data);
+    await measurePerformance('add 3', () => addData3(data), data);
+}   
 
-async function addData1(data){
-    let sum = 0;
-    for(let item of data){
-        sum = await asyncAdd(sum, item)
+measureAndLogPerformance();
+
+async function addData1(data) {
+    let sum = 0
+    for (let item of data) {
+      sum = await asyncAdd(sum, item)
     }
+    return sum
 }
 
 async function addData2(data){
@@ -40,6 +45,7 @@ async function addData3(values){
     return data.pop()
 }
 
+
 async function measurePerformance(name, cb){
     console.log(`Start: ${name}`);
     performance.mark('mf-start');
@@ -62,3 +68,4 @@ async function asyncAdd(a, b){
      }, 10)   
     })
 }
+
