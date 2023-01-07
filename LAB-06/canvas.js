@@ -34,15 +34,17 @@ class Ball {
     }
 
     update = () => {
-        this.x = this.vx;
-        this.y = this.vy;
+        this.x += this.vx;
+        this.y += this.vy;
 
         if(this.x + this.radius > canvas.width || this.x - this.radius < 0){
-            this.vx *= -1;
+            this.vx = -this.vx
+            this.x += this.vx;
         }
 
         if(this.y + this.radius > canvas.height || this.y - this.radius < 0){
-            this.vy *= -1;
+            this.vy = -this.vy;
+            this.y = this.vy;
         }
     }
 }
@@ -68,56 +70,39 @@ thresholdInput.addEventListener("input", () => {
 
 const start = () => {
     if(!running){
-        if (balls.length === 0) {
-            for (let i = 0; i < numberOfBallsInput.value; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                const vx = (Math.random() - 0.5) * 10;
-                const vy = (Math.random() - 0.5) * 10;
-                const radius = Math.random() * 20 + 10;
-                const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-                balls.push(new Ball(x, y, vx, vy, radius, color));
-            }
-            running = true;
-            requestAnimationFrame(draw);
+        for (let i = 0; i < numberOfBallsInput.value; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const vx = (Math.random() - 0.5) * 10;
+            const vy = (Math.random() - 0.5) * 10;
+            const radius = Math.random() * 20 + 10;
+            const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+            balls.push(new Ball(x, y, vx, vy, radius, color));
         }
+        running = true;
+        requestAnimationFrame(draw);      
     }
 }
 
 const reset = () => {
-    for (let i = 0; i < numberOfBallsInput.value; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const vx = (Math.random() - 0.5) * 10;
-        const vy = (Math.random() - 0.5) * 10;
-        const radius = Math.random() * 20 + 10;
-        const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-        balls.push(new Ball(x, y, vx, vy, radius, color));
-    }
+    balls = [];
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    running = false;
 }
 
 const draw = (timestamp) => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for(let i = 0; i < balls.length; i++){
-        balls[i].draw();
-        balls[i].update();
-        for(let j = i + 1; j < balls.length; j++){
+    if (running) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+        for(let i = 0; i < balls.length; i++){
+          balls[i].draw();
+          balls[i].update();
+          for(let j = i + 1; j < balls.length; j++){
             connectBalls(balls[i], balls[j]);
+          }
         }
-    }
-
-    frameCount++;
-    if(timestamp - lastTimestamp >= 1000){
-        fpsCount = frameCount;
-        frameCount = 0;
-        lastTimestamp = timestamp;
-    }
-    fpsCount.textContent = `Liczba klatek na sekundę: ${fpsCount}`;
-
-    if(running){
         requestAnimationFrame(draw);
-    }
+      }   
 }
 
 startBtn.addEventListener('click', start);
