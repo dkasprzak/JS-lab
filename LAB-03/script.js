@@ -60,7 +60,7 @@ class Channel {
         for (let i = 0; i < this.recorded.length; i++) {
           setTimeout(() => {
             this.playSound(this.recorded[i]);
-          }, i * 2000); // opóźnienie w milisekundach
+          }, i * 500); // opóźnienie w milisekundach
         }
       });
     }  
@@ -69,23 +69,23 @@ class Channel {
 const chanel1 = new Channel(
     document.querySelector(".play1"),
     document.querySelector(".stop1"),
-    document.querySelector(".record1")
+    document.querySelector(".record1"),
 );
 
 const chanel2 = new Channel(
     document.querySelector(".play2"),
     document.querySelector(".stop2"),
-    document.querySelector(".record2")
+    document.querySelector(".record2"),
 );
 
 const chanel3 = new Channel(
     document.querySelector(".play3"),
     document.querySelector(".stop3"),
-    document.querySelector(".record3")
+    document.querySelector(".record3"),
 );
 
 const chanel4 = new Channel(
     document.querySelector(".play4"),
     document.querySelector(".stop4"),
-    document.querySelector(".record4")
+    document.querySelector(".record4"),
 );
