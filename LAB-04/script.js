@@ -4,7 +4,7 @@ class NotePocket{
         this.content = content;
         this.color = color;
         this.pin = pin;
-        this.createdDate = createdDate;
+        this.createdDate = new Date(createdDate);
         this.notes = [];
     }
 
@@ -15,10 +15,14 @@ class NotePocket{
         const pin = document.querySelector("#pin").checked;
         const createdDate = new Date();
 
-        const newNote = new NotePocket(title, content, color, pin, createdDate);
+        const newNote = new NotePocket(title, content, color, pin, new Date(createdDate));
 
         const notesArray = JSON.parse(localStorage.getItem('notes')) || [];
-        notesArray.push(newNote);
+        if(pin){
+            notesArray.unshift(newNote);
+        }else{
+            notesArray.push(newNote);
+        }   
         localStorage.setItem('notes', JSON.stringify(notesArray));
         displayNotes();  
     }
@@ -36,6 +40,8 @@ function displayNotes(){
     notes.innerHTML = "";
 
     for(let i = 0; i < notesArray.length; i++){
+        notesArray[i].createdDate = new Date(notesArray[i].createdDate);
+        
         const note = notesArray[i];
 
         const noteDiv = document.createElement("div");
@@ -48,6 +54,13 @@ function displayNotes(){
 
         const noteContent = document.createElement("p");
         noteContent.textContent = note.content;
+
+        let noteCreatedDate = document.createElement("p");
+        noteCreatedDate.textContent = note.createdDate.toLocaleDateString("pl-PL", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric"
+        });
 
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
@@ -75,10 +88,12 @@ function displayNotes(){
               const newTitle = editForm.querySelector("#edit-title").value;
               const newContent = editForm.querySelector("#edit-content").value;
               const newColor = editForm.querySelector("#edit-color").value;
+              const newDate = new Date();
           
               notesArray[i].title = newTitle;
               notesArray[i].content = newContent;
               notesArray[i].color = newColor;
+              notesArray[i].createdDate = newDate;
           
               localStorage.setItem('notes', JSON.stringify(notesArray));
           
@@ -107,6 +122,7 @@ function displayNotes(){
 
         noteDiv.appendChild(noteTitle);
         noteDiv.appendChild(noteContent);
+        noteDiv.appendChild(noteCreatedDate);
         noteDiv.appendChild(deleteBtn);
         noteDiv.appendChild(editBtn);
         notes.appendChild(noteDiv);
