@@ -81,20 +81,33 @@ function displayNotes(){
             <option value="">Select color...</option> <option value="#43B9B3" ${color === 
             "#43B9B3" ? "selected" : ""}>Blue</option> <option value="#B343B9" ${color ===   
             "#B343B9" ? "selected" : ""}>Violet</option> <option value="#B9B343" ${color ===
-            "#B9B343" ? "selected" : ""}>Yellow</option> </select> <button id="save-edit">Save</button> <button id="cancel-edit">Cancel</button> `;
+            "#B9B343" ? "selected" : ""}>Yellow</option> </select> 
+            <label>Pin</label>
+            <input type="checkbox" id="edit-pin" ${note.pin ? "checked" : ""}>
+            <button id="save-edit">Save</button> <button id="cancel-edit">Cancel</button> `;
              editForm.id = "edit-form";       
 
             editForm.querySelector("#save-edit").addEventListener("click", () => {
               const newTitle = editForm.querySelector("#edit-title").value;
               const newContent = editForm.querySelector("#edit-content").value;
               const newColor = editForm.querySelector("#edit-color").value;
+              const newPin = editForm.querySelector("edit-pin").checked;
               const newDate = new Date();
           
               notesArray[i].title = newTitle;
               notesArray[i].content = newContent;
               notesArray[i].color = newColor;
+              notesArray[i].pin = newPin;
               notesArray[i].createdDate = newDate;
-          
+              
+              if(newPin && !notesArray[i].pin){
+                notesArray.splice(i, 1);
+                notesArray.unshift(notesArray[i]);
+              }else{
+                notesArray.splice(i, 1);
+                notesArray.push(notesArray[i]);
+              }
+
               localStorage.setItem('notes', JSON.stringify(notesArray));
           
               noteDiv.removeChild(editForm);
