@@ -99,18 +99,18 @@ input, button{
     font-size: 10px;
 }
 
-.delete {
+.deleteBtn {
     position: absolute;
     margin-right: 150px;
     visibility: hidden;    
 }
 
-.wetaher-content-child:hover > .delete{
+.wetaher-content-child:hover > .deleteBtn{
     visibility: visible;
     cursor: pointer;
 }
 
-.delete > img{
+.deleteBtn > img{
     width: 20px;
     height: 20px;
 }
